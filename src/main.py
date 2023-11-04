@@ -13,9 +13,6 @@ Upload an image of your 'Nutrition Facts' to get nutritional information about t
 <|{url}|image|>
 """
 
-def capture(state):
-    pass
-
 def analyze(state):
     # anaylyze shit
     pass
