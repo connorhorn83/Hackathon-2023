@@ -5,10 +5,11 @@ renderResults = False
 page = """
 
 # Nutrify
-## Upload your image *here*.
+## Upload your image here.
 
 <|{img}|file_selector|extensions=".raw,.jpeg,.png,.jpg"|>
 <|Analyze|button|on_action=handleAnalysis|>
+<|sug|text|render=False|>
 """
 
 def handleAnalysis(state):
