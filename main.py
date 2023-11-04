@@ -15,4 +15,4 @@ page = """
 """
     
     
-Gui(page).run(use_reloader=True, title="Nutripy", favicon="img/nutrition.ico")
+Gui(page).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
