@@ -6,11 +6,10 @@ page = """
 
 # Nutri*py*
 Upload an image of your 'Nutrition Facts' to get nutritional information about the food.
-<br></br>
+
 <|{url}|file_selector|label=Upload Image|extensions=".raw,.jpeg,.png,.jpg,.raw"|>
 <|Analyze|button|on_action=analyze|>
-<br></br>
-<|{url}|image|>
+
 """
 
 def analyze(state):
