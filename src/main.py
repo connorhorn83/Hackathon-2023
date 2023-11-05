@@ -28,9 +28,7 @@ def on_change(state, var_name, var_value):
         df = search_components(queryList)
         
 def analyze(state):
-    print(queryInput)
     queryList = [queryInput]
-    print(queryList)
     df = search_components(queryList)
 
 Gui(page).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")

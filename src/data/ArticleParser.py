@@ -6,9 +6,13 @@ Created on Sat Nov  4 20:36:31 2023
 """
 
 import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+from googleSearch import googleSearch
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
 import newspaper
+import wikipedia
 
 def truncate_text(text, max_length):
     return (text[:max_length] + '...') if len(text) > max_length else text
@@ -66,22 +70,21 @@ def pros_cons_summary_on_component(urls, component_name):
     max_length = 150
 
     # Truncate pros and cons elements to be more brief
-    all_pros = [truncate_text(pro, max_length) for pro in all_pros]
-    all_cons = [truncate_text(con, max_length) for con in all_cons]
+    # all_pros = [truncate_text(pro, max_length) for pro in all_pros]
+    # all_cons = [truncate_text(con, max_length) for con in all_cons]
 
     # Write the pros, cons, and summary to text files
-    with open(f"{component_name}_pros.txt", 'w') as f:
-        f.write("Pros:\n")
-        for pro in all_pros:
-            f.write("- " + pro + "\n")
     
-    with open(f"{component_name}_cons.txt", 'w') as f:
-        f.write("Cons:\n")
-        for con in all_cons:
-            f.write("- " + con + "\n")
+    if ' ' in all_pros:
+        all_pros.remove(' ')
+    if ' ' in all_cons:
+        all_cons.remove(' ')
+        
+    search_term = wikipedia.search(component)[0]
     
     with open(f"{component_name}_summary.txt", 'w') as f:
-        f.write("Summary for " + component_name + ":\n\n")
+        f.write("Summary for " + component_name + ":\n" + 
+                wikipedia.summary(search_term, sentences=4, auto_suggest=False) + "\n")
         f.write("Pros:\n")
         for pro in all_pros:
             f.write("- " + pro + "\n")
@@ -94,12 +97,10 @@ def pros_cons_summary_on_component(urls, component_name):
         for i, source in enumerate(article_sources):
             f.write(f"{i+1}. {source}\n")
 
+
 # Example usage:
-component = "your_component_here"
-urls = [
-    "https://www.example.com/article1",
-    "https://www.example.com/article2",
-    # Add more article URLs here
-]
+component = input("Enter a component name: ")
+urls = googleSearch(component)
+
 
 pros_cons_summary_on_component(urls, component)
