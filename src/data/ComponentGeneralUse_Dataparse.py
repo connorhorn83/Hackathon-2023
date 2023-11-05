@@ -22,8 +22,9 @@ def clean_text(text):
         return str(text)  # Convert non-string data to string and return
 
 def search_components(components_list):
-    if ' ' in components_list:
-        components_list.remove(' ')
+    for i in range(len(components_list)):
+        if ' ' in components_list:
+            components_list.remove(' ')
     file_path = r"src/data/FoodSubstances.xlsx"
     sheet_name = 'FoodSubstances'
     columns_of_interest = ['Name', 'Use']

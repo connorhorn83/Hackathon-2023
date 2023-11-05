@@ -14,9 +14,10 @@ page = """
 Upload an image of your 'Nutrition Facts' to get nutritional information about the food.
 
 <|{url}|file_selector|label=Upload Image|extensions=".raw,.jpeg,.png,.jpg,.raw"|>
-<|Analyze|button|on_action=analyze|>
 <|{queryInput}|input|label=Search...|>
 
+<|{url}|image|>
+<|{df}|table|filter|rebuild=True|>
 """
 
 def on_change(state, var_name, var_value):
@@ -24,16 +25,9 @@ def on_change(state, var_name, var_value):
         queryInputSearch = var_value
         queryList = [queryInputSearch]
         df = search_components(queryList)
-    if var_name == "url":
+    elif var_name == "url":
         url2 = var_value
         print(url2)
         df = run_processing(url2)
-        
-def analyze(state):
-    queryList = [queryInput]
-    df = search_components(queryList)
 
-page2 = """
-<|{df}|table|filter|rebuild|>
-"""
-Gui(page+page2).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
+Gui(page=page).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
