@@ -59,7 +59,8 @@ def search_components(components_list):
         df_combined['Use'] = df_combined['Use'].apply(clean_text)
         for i in range(len(df_combined['Use'])):
             if df_combined['Use'][i] == 'nan':
-                df_combined['Use'][i] = 'The FDA provides no information on this ingredient'
+                df_combined['Use'][i] = 'THE FDA PROVIDES NO INFORMATION ON THIS COMPONENT'
+        return df_combined
             
 
     except FileNotFoundError:
@@ -69,7 +70,7 @@ def search_components(components_list):
 
     # Example usage: Call the function and pass a list of components from another method (temp)
 def ingredient_list_search():
-    final_ingredients = run_function()
+    final_ingredients, nutrition_facts = run_function()
     temp = final_ingredients
     search_components(temp)
     print(final_ingredients)

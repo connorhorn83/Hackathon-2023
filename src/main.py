@@ -18,10 +18,11 @@ Upload an image of your 'Nutrition Facts' to get nutritional information about t
 
 def on_change(state, var_name, var_value):
     if var_name == "queryInput":
-        queryInputSearch = var_value
-        queryList = [queryInputSearch]
-        state.df = pd.DataFrame()
-        state.df = search_components(queryList)
+        if var_value != "" or " ":
+            queryInputSearch = var_value
+            queryList = [queryInputSearch]
+            state.df = pd.DataFrame()
+            state.df = search_components(queryList)
 
     elif var_name == "url":
         url2 = var_value
@@ -29,4 +30,4 @@ def on_change(state, var_name, var_value):
         state.df = pd.DataFrame()
         state.df = run_processing(url2)
 
-Gui(page).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
+Gui(page=page).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
