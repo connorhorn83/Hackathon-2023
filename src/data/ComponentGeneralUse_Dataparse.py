@@ -8,7 +8,10 @@ Created on Sat Nov  4 13:48:05 2023
 import pandas as pd
 import re
 from data.BarcodeAPIDataSplit import run_function
+import wikipedia
 
+def search_term(component):
+    return wikipedia.summary(component, sentences=4, auto_suggest=False) + "\n"
 
 def clean_text(text):
     # Ensure 'text' is a string before cleaning
@@ -27,7 +30,7 @@ def search_components(components_list):
             components_list.remove(' ')
     file_path = r"src/data/FoodSubstances.xlsx"
     sheet_name = 'FoodSubstances'
-    columns_of_interest = ['Name', 'Use']
+    columns_of_interest = ['Name', 'Use',]
     df_list = []  # Empty list to store individual DataFrames
 
     try:
@@ -57,9 +60,12 @@ def search_components(components_list):
         df_combined = pd.concat(df_list, ignore_index=True) if df_list else pd.DataFrame()  # Combine individual DataFrames into a single DataFrame
 
         df_combined['Use'] = df_combined['Use'].apply(clean_text)
+        # summary_list = []
         for i in range(len(df_combined['Use'])):
+            # summary_list.append((search_term(df_combined['Name'][i])))
             if df_combined['Use'][i] == 'nan':
                 df_combined['Use'][i] = 'THE FDA PROVIDES NO INFORMATION ON THIS COMPONENT'
+        # df_combined['Summary'] = summary_list
         return df_combined
             
 
