@@ -7,8 +7,7 @@ Created on Sat Nov  4 13:48:05 2023
 
 import pandas as pd
 import re
-from BarcodeAPIDataSplit import run_function
-from HealthEffects import found_in_db
+from data.BarcodeAPIDataSplit import run_function
 import wikipedia
 
 def search_term(component):
@@ -43,7 +42,7 @@ def search_components(components_list):
         data = pd.read_excel(file_path, sheet_name=sheet_name)
         selected_data = data[columns_of_interest]
         
-        indexed_data = selected_data.set_index('orig_components_name', drop=False)
+        indexed_data = selected_data.set_index('Name', drop=False)
         indexed_data.index = indexed_data.index.str.lower()
         
         for component in components_list:
@@ -89,14 +88,8 @@ def ingredient_list_search():
 def run_processing(image_url):
     final_ingredients, score_list = run_function(image_url)
     df = search_components(final_ingredients)
-    df = found_in_db(df)
     return df
 
 def run_intake(url):
     ingred, list = run_function(url)
     return list
-    
-temp = ['caffeine']
-df = search_components(temp)
-df = found_in_db(df)
-print(df.head())
