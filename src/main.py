@@ -21,11 +21,10 @@ Upload an image of your 'Nutrition Facts' to get nutritional information about t
 
 def on_change(state, var_name, var_value):
     if var_name == "queryInput":
-        state.queryInput = ''
         print(queryInput)
         return
         
 def analyze(state):
-    df = search_components(queryInput)
+    df = search_components("beef")
           
 Gui(page).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
