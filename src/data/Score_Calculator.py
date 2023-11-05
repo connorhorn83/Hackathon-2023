@@ -96,5 +96,4 @@ def calc_scores(nut_facts):
     data = pd.DataFrame()
     data['Name'] = nut_name
     data['Score'] = nut_list
-    print(data)
     return data

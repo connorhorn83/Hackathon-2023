@@ -37,4 +37,4 @@ def on_change(state, var_name, var_value):
         state.dfimg = run_intake(url2)
         
 
-Gui(page=page).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
+Gui(page=page).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico", debug=False)
