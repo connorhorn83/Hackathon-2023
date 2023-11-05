@@ -8,6 +8,7 @@ df = pd.DataFrame()
 
 url = None
 # TODO: figure out the picture
+page2 = """"""
 page = """
 
 # Nutri*py*
@@ -24,10 +25,16 @@ def on_change(state, var_name, var_value):
     if var_name == "queryInput":
         queryInputSearch = var_value
         queryList = [queryInputSearch]
-        df = search_components(queryList)
+        df2 = search_components(queryList)
+        page2 = """
+            <|{df2}|table|filter|rebuild=True|>
+        """
+        state.refresh("page2")
     elif var_name == "url":
         url2 = var_value
         print(url2)
-        df = run_processing(url2)
+        df2 = run_processing(url2)
+        
 
-Gui(page=page).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
+
+Gui(page+page2).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
