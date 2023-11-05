@@ -62,3 +62,4 @@ if (barcode_type == 'EAN13') and len(barcodes) == 1:
     with open("data.json", "w") as json_file:
         json.dump(data, json_file)
 
+bruh
