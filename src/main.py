@@ -1,5 +1,4 @@
 from taipy import Gui
-from webcam import Webcam
 from data.ComponentGeneralUse_Dataparse import search_components
 
 test_list = ['Biotin', ' ascorbic acid', 'pantothenic']
@@ -18,7 +17,7 @@ Upload an image of your 'Nutrition Facts' to get nutritional information about t
 
 <|{url}|image|>
 
-<|{df}|table|>
+<|{df}|table|filter=True|>
 
 """
 
