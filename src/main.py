@@ -23,7 +23,6 @@ Upload an image of your 'Nutrition Facts' to get nutritional information about t
 
 def on_change(state, var_name, var_value):
     if var_name == "queryInput":
-        state.queryInput = ''
         print(queryInput)
         return
         
