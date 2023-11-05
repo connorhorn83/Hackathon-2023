@@ -72,7 +72,7 @@ def ingredient_list_search():
     print(final_ingredients)
 
 def run_processing(image_url):
-    final_ingredients = run_function(image_url)
+    final_ingredients, nutrition_facts = run_function(image_url)
     df = search_components(final_ingredients)
     return df
 
