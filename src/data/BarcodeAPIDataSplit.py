@@ -129,6 +129,8 @@ def run_function(image_url):
         # Extract the ingredients from the JSON data
         ingredients = data['products'][0]['ingredients']
 
+        nutrition_facts = data['products'][0]['nutrition_facts']
+
         ingredients = remove_word(remove_word(ingredients, 'And/or'), 'And')
         ingredients = delete_text_between_square_brackets(ingredients)
         ingredients = split_text_with_nested_parentheses(ingredients)
@@ -159,5 +161,5 @@ def run_function(image_url):
 
 
         # Final Ingredients has all of the sorted data
-        return final_ingredients
+        return final_ingredients, nutrition_facts
     

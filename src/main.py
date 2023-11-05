@@ -25,16 +25,13 @@ def on_change(state, var_name, var_value):
     if var_name == "queryInput":
         queryInputSearch = var_value
         queryList = [queryInputSearch]
-        df2 = search_components(queryList)
-        page2 = """
-            <|{df2}|table|filter|rebuild=True|>
-        """
-        state.refresh("page2")
+        state.df = pd.DataFrame()
+        state.df = search_components(queryList)
+
     elif var_name == "url":
         url2 = var_value
         print(url2)
-        df2 = run_processing(url2)
-        
-
+        state.df = pd.DataFrame()
+        state.df = run_processing(url2)
 
 Gui(page+page2).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
