@@ -28,8 +28,9 @@ def search_components(components_list):
         
         indexed_data = selected_data.set_index('Name', drop=False)
         indexed_data.index = indexed_data.index.str.lower()
-
+        
         for component in components_list:
+            print(component)
             print(f"Searching for '{component}':")
             search_item = component.lower()
             found_items = indexed_data[indexed_data.index.str.contains(search_item, case=False, na=False)]
@@ -52,7 +53,3 @@ def search_components(components_list):
         print("File not found. Please provide the correct file path.")
     except Exception as e:
         print("An error occurred:", e)
-
-# Example usage: Call the function and pass a list of components from another method (temp)
-temp = ['Biotin', ' ascorbic acid', 'pantothenic']
-search_components(temp)

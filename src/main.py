@@ -2,7 +2,7 @@ from taipy import Gui
 from data.ComponentGeneralUse_Dataparse import search_components
 import pandas as pd
 
-test_list = ['Biotin', ' ascorbic acid', 'pantothenic']
+# test_list = ['Biotin', ' ascorbic acid', 'pantothenic']
 queryInput = ""
 df = pd.DataFrame()
 
@@ -15,7 +15,7 @@ Upload an image of your 'Nutrition Facts' to get nutritional information about t
 
 <|{url}|file_selector|label=Upload Image|extensions=".raw,.jpeg,.png,.jpg,.raw"|>
 <|Analyze|button|on_action=analyze|>
-<|{queryInput}|input|label=Search...|on_action=analyze|>
+<|{queryInput}|input|label=Search...|>
 
 <|{df}|table|filter|rebuild|>
 
@@ -23,10 +23,14 @@ Upload an image of your 'Nutrition Facts' to get nutritional information about t
 
 def on_change(state, var_name, var_value):
     if var_name == "queryInput":
-        print(queryInput)
-        return
+        queryInputSearch = var_value
+        queryList = [queryInputSearch]
+        df = search_components(queryList)
         
 def analyze(state):
-    df = search_components(test_list)
-          
+    print(queryInput)
+    queryList = [queryInput]
+    print(queryList)
+    df = search_components(queryList)
+
 Gui(page).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
