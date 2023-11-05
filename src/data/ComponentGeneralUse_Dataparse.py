@@ -7,7 +7,7 @@ Created on Sat Nov  4 13:48:05 2023
 
 import pandas as pd
 import re
-import BarcodeAPIDataSplit
+from data.BarcodeAPIDataSplit import run_function
 
 
 def clean_text(text):
@@ -65,10 +65,15 @@ def search_components(components_list):
 
     # Example usage: Call the function and pass a list of components from another method (temp)
 def ingredient_list_search():
-    final_ingredients = BarcodeAPIDataSplit.run_function()
+    final_ingredients = run_function()
     temp = final_ingredients
     search_components(temp)
     print(final_ingredients)
 
-ingredient_list_search()
+def run_processing(image_url):
+    final_ingredients = run_function(image_url)
+    df = search_components(final_ingredients)
+    return df
+
+# ingredient_list_search()
     

@@ -1,5 +1,5 @@
 from taipy import Gui
-from data.ComponentGeneralUse_Dataparse import search_components
+from data.ComponentGeneralUse_Dataparse import search_components, run_processing
 import pandas as pd
 
 # test_list = ['Biotin', ' ascorbic acid', 'pantothenic']
@@ -17,8 +17,6 @@ Upload an image of your 'Nutrition Facts' to get nutritional information about t
 <|Analyze|button|on_action=analyze|>
 <|{queryInput}|input|label=Search...|>
 
-<|{df}|table|filter|rebuild|>
-
 """
 
 def on_change(state, var_name, var_value):
@@ -26,6 +24,10 @@ def on_change(state, var_name, var_value):
         queryInputSearch = var_value
         queryList = [queryInputSearch]
         df = search_components(queryList)
+    if var_name == "url":
+        url2 = var_value
+        print(url2)
+        df = run_processing(url2)
         
 def analyze(state):
     print(queryInput)
@@ -33,4 +35,7 @@ def analyze(state):
     print(queryList)
     df = search_components(queryList)
 
-Gui(page).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
+page2 = """
+<|{df}|table|filter|rebuild|>
+"""
+Gui(page+page2).run(use_reloader=True,  title="Nutripy", favicon="img/nutrition.ico")
