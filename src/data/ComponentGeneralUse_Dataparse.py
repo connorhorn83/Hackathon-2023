@@ -57,7 +57,10 @@ def search_components(components_list):
         df_combined = pd.concat(df_list, ignore_index=True) if df_list else pd.DataFrame()  # Combine individual DataFrames into a single DataFrame
 
         df_combined['Use'] = df_combined['Use'].apply(clean_text)
-        return df_combined
+        for i in range(len(df_combined['Use'])):
+            if df_combined['Use'][i] == 'nan':
+                df_combined['Use'][i] = 'The FDA provides no information on this ingredient'
+            
 
     except FileNotFoundError:
         print("File not found. Please provide the correct file path.")
@@ -75,6 +78,4 @@ def run_processing(image_url):
     final_ingredients, nutrition_facts = run_function(image_url)
     df = search_components(final_ingredients)
     return df
-
-# ingredient_list_search()
     
