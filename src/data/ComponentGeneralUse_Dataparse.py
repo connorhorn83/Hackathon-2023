@@ -93,4 +93,3 @@ def run_processing(image_url):
 def run_intake(url):
     ingred, list = run_function(url)
     return list
-    

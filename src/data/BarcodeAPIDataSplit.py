@@ -159,6 +159,5 @@ def run_function(image_url):
             final_ingredients[i] = remove_characters(final_ingredients[i], '/*()[].,:?')
 
         # Final Ingredients has all of the sorted data
-        nut_what = calc_scores(nutrition_facts)
-        return final_ingredients, nut_what
+        return final_ingredients, nutrition_facts
     
