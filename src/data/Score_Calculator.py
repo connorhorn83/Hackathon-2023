@@ -12,11 +12,6 @@ import pandas as pd
 # add code to take in nutrition facts from barcode in list format
 # ['Component_1 Quantity_1 Unit_1','Component_2 Quantity_2 Unit_2'] 
 
-input_string = ('Energy 540 kcal, Fat 30.85 g, Saturated Fat 5.14 g, '
-                'Carbohydrates 59.13 g, Sugars 7.71 g, Fiber 5.1 g, '
-                'Protein 5.14 g, Salt 1.285 g, Vitamin A 0.0003084 g, '
-                'Vitamin C 0.0231 g, Potassium 1.234 g, Iron 0.00185 g.')
-
 def data_organize(input_string):
     # Splitting the string into components
     components = input_string.split(', ')
@@ -84,12 +79,22 @@ def calculate_dv_score(nutrient_name, quantity, unit):
     else:
         return "Nutrient not found or not supported for DV score calculation"
 
-nutrient_data = data_organize(input_string)
+def calc_scores(nut_facts):
+    nut_list = []
+    nut_name = []
+    nutrient_data = data_organize(nut_facts)
+    for nutrient in nutrient_data:
+        nutrient_name = nutrient.get('Name')
+        nut_name.append(nutrient.get('Name'))
+        nutrient_quantity = nutrient.get('Quantity')
+        nutrient_unit = nutrient.get('Unit')
 
-for nutrient in nutrient_data:
-    nutrient_name = nutrient.get('Name')
-    nutrient_quantity = nutrient.get('Quantity')
-    nutrient_unit = nutrient.get('Unit')
-
-    score = calculate_dv_score(nutrient_name, nutrient_quantity, nutrient_unit)
-    print(nutrient_name, ": ",score)
+        score = calculate_dv_score(nutrient_name, nutrient_quantity, nutrient_unit)
+        nut_list.append(score)
+        
+    
+    data = pd.DataFrame()
+    data['Name'] = nut_name
+    data['Score'] = nut_list
+    print(data)
+    return data

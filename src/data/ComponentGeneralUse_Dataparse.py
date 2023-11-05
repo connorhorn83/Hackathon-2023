@@ -11,7 +11,12 @@ from data.BarcodeAPIDataSplit import run_function
 import wikipedia
 
 def search_term(component):
-    return wikipedia.summary(component, sentences=4, auto_suggest=False) + "\n"
+    try:
+        search_result = wikipedia.search(component)[0]
+        summary = wikipedia.summary(search_result, sentences=3, auto_suggest=False)
+    except:
+        summary = 'No summary found'
+    return summary
 
 def clean_text(text):
     # Ensure 'text' is a string before cleaning
@@ -41,7 +46,6 @@ def search_components(components_list):
         indexed_data.index = indexed_data.index.str.lower()
         
         for component in components_list:
-            #print(component)
             print(f"Searching for '{component}':")
             search_item = r"\b" + re.escape(component.lower()) + r"\b"  # Use regex word boundaries
             found_items = indexed_data[indexed_data.index.str.contains(search_item, case=False, na=False, regex=True)]
@@ -60,21 +64,21 @@ def search_components(components_list):
         df_combined = pd.concat(df_list, ignore_index=True) if df_list else pd.DataFrame()  # Combine individual DataFrames into a single DataFrame
 
         df_combined['Use'] = df_combined['Use'].apply(clean_text)
-        # summary_list = []
-        for i in range(len(df_combined['Use'])):
-            # summary_list.append((search_term(df_combined['Name'][i])))
+        summary_list = []
+        
+        for i in range(len(df_combined['Name'])):
+            summary_list.append(search_term(df_combined['Name'][i]))
             if df_combined['Use'][i] == 'nan':
                 df_combined['Use'][i] = 'THE FDA PROVIDES NO INFORMATION ON THIS COMPONENT'
-        # df_combined['Summary'] = summary_list
+                
+        df_combined['Summary'] = summary_list
         return df_combined
-            
 
     except FileNotFoundError:
         print("File not found. Please provide the correct file path.")
     except Exception as e:
         print("An error occurred:", e)
 
-    # Example usage: Call the function and pass a list of components from another method (temp)
 def ingredient_list_search():
     final_ingredients, nutrition_facts = run_function()
     temp = final_ingredients
@@ -82,7 +86,11 @@ def ingredient_list_search():
     print(final_ingredients)
 
 def run_processing(image_url):
-    final_ingredients, nutrition_facts = run_function(image_url)
+    final_ingredients, score_list = run_function(image_url)
     df = search_components(final_ingredients)
     return df
+
+def run_intake(url):
+    ingred, list = run_function(url)
+    return list
     

@@ -1,5 +1,6 @@
 import cv2 as cv
 from pyzbar.pyzbar import decode
+from data.Score_Calculator import calc_scores
 import urllib.request
 import json
 #import pprint
@@ -112,7 +113,7 @@ def run_function(image_url):
         # Send barcode data
         barcode = barcode_data
 
-        api_key = "3uolgunto7alfggycr830aerkvyu6k"
+        api_key = "j4h06gqhljc3l2671vu5bimewxpss8"
         url = f"https://api.barcodelookup.com/v3/products?barcode={barcode}&formatted=y&key={api_key}"
 
         # Sends API Call to site
@@ -154,12 +155,10 @@ def run_function(image_url):
         # Print the array of ingredients with double space separation
         print("Ingredients:")
 
-
         for i in range(len(final_ingredients)):
             final_ingredients[i] = remove_characters(final_ingredients[i], '/*()[].,:?')
 
-
-
         # Final Ingredients has all of the sorted data
-        return final_ingredients, nutrition_facts
+        nut_what = calc_scores(nutrition_facts)
+        return final_ingredients, nut_what
     
