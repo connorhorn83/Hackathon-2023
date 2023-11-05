@@ -70,5 +70,10 @@ def ingredient_list_search():
     search_components(temp)
     print(final_ingredients)
 
-ingredient_list_search()
+def run_processing(image_url):
+    final_ingredients = run_function(image_url)
+    df = search_components(final_ingredients)
+    return df
+
+# ingredient_list_search()
     

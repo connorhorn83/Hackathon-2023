@@ -69,12 +69,13 @@ def delete_text_between_square_brackets(input_string):
     result = re.sub(r'\[.*?\]', '', input_string)
     return result
 
-def run_function():
+def run_function(image_url):
 
-    files = ['Celsius_Lemon_Lime.jpg', 'Sea_Salt_Chips.jpg', 'Smokehouse_BBQ.jpg', 'image_67204609.JPG', 'Hot_Fries.jpg']
-    out = files[2]
+    # files = ['Celsius_Lemon_Lime.jpg', 'Sea_Salt_Chips.jpg', 'Smokehouse_BBQ.jpg', 'image_67204609.JPG', 'Hot_Fries.jpg']
+    # out = files[2]
 
-    file_path = f'src\\data\\Test Images\\{out}'
+    # file_path = f'src\\data\\Test Images\\{out}'
+    file_path = image_url
 
 
 
