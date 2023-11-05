@@ -157,7 +157,9 @@ def run_function(image_url):
 
         for i in range(len(final_ingredients)):
             final_ingredients[i] = remove_characters(final_ingredients[i], '/*()[].,:?')
+            print(final_ingredients[i])
 
         # Final Ingredients has all of the sorted data
+        print(nutrition_facts)
         return final_ingredients, nutrition_facts
     
