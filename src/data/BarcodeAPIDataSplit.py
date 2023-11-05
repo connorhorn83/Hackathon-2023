@@ -96,8 +96,8 @@ def run_function(image_url):
     resized_image = cv.resize(input_image, (new_width, new_height))
 
     # Show the resized image
-    cv.imshow('img', resized_image)
-    cv.waitKey(0)
+    # cv.imshow('img', resized_image)
+    # cv.waitKey(0)
 
     # Decode the barcode
     barcodes = decode(resized_image)
