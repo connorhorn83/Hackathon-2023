@@ -70,12 +70,6 @@ def delete_text_between_square_brackets(input_string):
     return result
 
 
-
-
-
-
-
-
 files = ['Celsius_Lemon_Lime.jpg', 'Sea_Salt_Chips.jpg', 'Smokehouse_BBQ.jpg', 'image_67204609.JPG', 'Hot_Fries.jpg']
 out = files[2]
 
@@ -161,5 +155,3 @@ if (barcode_type == 'EAN13') and len(barcodes) == 1:
 
 
     # Final Ingredients has all of the sorted data
-
-
