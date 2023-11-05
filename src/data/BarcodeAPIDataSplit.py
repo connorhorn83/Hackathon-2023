@@ -1,6 +1,5 @@
 import cv2 as cv
 from pyzbar.pyzbar import decode
-from data.Score_Calculator import calc_scores
 import urllib.request
 import json
 #import pprint

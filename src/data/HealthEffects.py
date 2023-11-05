@@ -1,31 +1,24 @@
-# import pandas as pd
-# import re
-# from ComponentGeneralUse_Dataparse import search_components
+import pandas as pd
 
-# def concatenate_health_effects(series):
-#     return ', '.join(series)
+def concatenate_health_effects(series):
+    return ', '.join(series)
 
-# file_path = r"src/data/CompoundsHealthEffect.xlsx"
-# sheet_name = 'CompoundsHealthEffect'
-# data = pd.read_excel(file_path, sheet_name=sheet_name)
-# columns_of_interest = ['orig_compound_name', 'orig_health_effect_name']
-# data = data[columns_of_interest]
-# result = data.groupby('orig_compound_name')['orig_health_effect_name'].agg(concatenate_health_effects).reset_index()
+def get_he_data():
+    # set up variables
+    file_path = r"src/data/CompoundsHealthEffect.xlsx"
+    sheet_name = 'CompoundsHealthEffect'
+    columns_of_interest = ['orig_compound_name', 'orig_health_effect_name',]
 
-# element = result.loc[result['orig_compound_name'] == 'CAFFEINE', 'orig_health_effect_name'].values[0]
+    # pull data, take only wanted columns and change column names
+    he_data = pd.read_excel(file_path, sheet_name=sheet_name)
+    he_data = he_data[columns_of_interest]
+    he_data = he_data.rename(columns={'orig_compound_name': 'Name', 'orig_health_effect_name': 'Health Effects'})
+    
+    # drop duplicates and send all to lowercase
+    he_data = he_data.drop_duplicates()
+    he_data['Name'] = he_data['Name'].str.lower().str.strip()
 
-# temp = ['caffeine']
-# dataframe = pd.DataFrame()
-# dataframe = search_components(temp)
-# dataframe['Health Effect'] = "NA"
-# print(dataframe)
+    # group by name and concatenate health effects
+    he_data = he_data.groupby('Name')['Health Effects'].agg(concatenate_health_effects).reset_index()
 
-# indexed_data = result.set_index('orig_components_name', drop=False)
-# indexed_data.index = indexed_data.index.str.lower()
-
-
-# for component in dataframe['Name']:
-#     print(f"Searching for '{component}':")
-#     search_item = r"\b" + re.escape(component.lower()) + r"\b"  # Use regex word boundaries
-#     found_items = indexed_data[indexed_data.index.str.contains(search_item, case=False, na=False, regex=True)]
-
+    return he_data
