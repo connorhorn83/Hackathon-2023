@@ -7,7 +7,7 @@ Created on Sat Nov  4 13:48:05 2023
 
 import pandas as pd
 import re
-from BarcodeAPIDataSplit import run_function
+import BarcodeAPIDataSplit
 
 
 def clean_text(text):
@@ -22,7 +22,9 @@ def clean_text(text):
         return str(text)  # Convert non-string data to string and return
 
 def search_components(components_list):
-    file_path = r"C:/Users/conno/OneDrive/Desktop/Hackathon/Hackathon-2023/src/data/FoodSubstances.xlsx"
+    if ' ' in components_list:
+        components_list.remove(' ')
+    file_path = r"src/data/FoodSubstances.xlsx"
     sheet_name = 'FoodSubstances'
     columns_of_interest = ['Name', 'Use']
     df_list = []  # Empty list to store individual DataFrames
@@ -35,7 +37,7 @@ def search_components(components_list):
         indexed_data.index = indexed_data.index.str.lower()
         
         for component in components_list:
-            print(component)
+            #print(component)
             print(f"Searching for '{component}':")
             search_item = r"\b" + re.escape(component.lower()) + r"\b"  # Use regex word boundaries
             found_items = indexed_data[indexed_data.index.str.contains(search_item, case=False, na=False, regex=True)]
@@ -63,9 +65,10 @@ def search_components(components_list):
 
     # Example usage: Call the function and pass a list of components from another method (temp)
 def ingredient_list_search():
-    final_ingredients = run_function(1)
+    final_ingredients = BarcodeAPIDataSplit.run_function()
     temp = final_ingredients
     search_components(temp)
+    print(final_ingredients)
 
 ingredient_list_search()
     

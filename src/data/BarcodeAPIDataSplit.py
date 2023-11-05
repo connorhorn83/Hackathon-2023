@@ -69,12 +69,14 @@ def delete_text_between_square_brackets(input_string):
     result = re.sub(r'\[.*?\]', '', input_string)
     return result
 
-def run_function(image_num):
+def run_function():
 
     files = ['Celsius_Lemon_Lime.jpg', 'Sea_Salt_Chips.jpg', 'Smokehouse_BBQ.jpg', 'image_67204609.JPG', 'Hot_Fries.jpg']
-    out = files[image_num]
+    out = files[2]
 
-    file_path = rf'MakeUC 2023\Test Images\{out}'
+    file_path = f'src\\data\\Test Images\\{out}'
+
+
 
     input_image = cv.imread(file_path)
 
