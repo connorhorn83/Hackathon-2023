@@ -112,7 +112,7 @@ def run_function(image_url):
         # Send barcode data
         barcode = barcode_data
 
-        api_key = "j4h06gqhljc3l2671vu5bimewxpss8"
+        # api_key = "APIKEYHERE"
         url = f"https://api.barcodelookup.com/v3/products?barcode={barcode}&formatted=y&key={api_key}"
 
         # Sends API Call to site
