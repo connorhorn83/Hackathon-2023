@@ -6,3 +6,5 @@ Nutripy is a website that helps users be informed about the nutritional contents
 
 ## How it works
 Nutripy is super simple! All you do is head over to the [Nutripy site](https://nutripy3.taipy.cloud) and upload a picture of a barcode. The site will then identify the barcode and return the nutritional information of the product, including the pros and cons of all the ingredients within that item.
+
+taipy | opencv-python | pyzbar | wikipedia
