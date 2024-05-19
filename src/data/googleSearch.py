@@ -1,3 +1,7 @@
+"""
+NOT USED
+"""
+
 from googlesearch import search
 
 def googleSearch(query):

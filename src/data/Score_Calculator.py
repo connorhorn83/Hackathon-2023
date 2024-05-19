@@ -39,8 +39,8 @@ def data_organize(input_string):
 def calculate_dv_score(nutrient_name, quantity, unit):
     # Dictionary containing the maximum recommended values for various nutrients
     dv_max_values = {
-        'Fat': 61,  # Replace with the actual maximum value for fat
-        'Vitamin A': 0.8,  # Replace with the actual maximum value for Vitamin A
+        'Fat': 61,
+        'Vitamin A': 0.8,
         'Carbohydrates': 275,
         'Saturated Fat': 22,
         'Salt': 5.9,
@@ -55,9 +55,8 @@ def calculate_dv_score(nutrient_name, quantity, unit):
         'Vitamin E': 0.015,
         'Sugars': 30,
         'Energy': 2000,
-        
-        
     }
+    
     # Convert ounces to grams
     if unit.lower() == 'oz':
         try:
@@ -83,6 +82,7 @@ def calc_scores(nut_facts):
     nut_list = []
     nut_name = []
     nutrient_data = data_organize(nut_facts)
+    print(nutrient_data)
     for nutrient in nutrient_data:
         nutrient_name = nutrient.get('Name')
         nut_name.append(nutrient.get('Name'))
