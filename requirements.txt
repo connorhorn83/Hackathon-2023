@@ -1,4 +1,5 @@
 taipy
-scikit-learn
-statsmodels
 pandas
+opencv-python
+pyzbar
+wikipedia
