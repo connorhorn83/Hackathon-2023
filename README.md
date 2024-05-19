@@ -4,7 +4,7 @@ Make UC Hackathon team: Connor Horn, Logan Muhlen, Lucas Fox, Cameran Beason.
 ## Introducing Nutri*py*
 Nutripy is a web application that helps to inform users about the nutritional contents of their food and beverages. Ingredients are identified and quickly summarized, all from one picture of the product's barcode. Nutripy is a great tool for those who want to be more informed about what they are eating, and for those who want to make healthier choices.
 
-## How Nutripy works
+## How Nutripy Works
 
 #### Home Page:
 Here you have the choice of inputting an image or searching for a specific ingredient.
