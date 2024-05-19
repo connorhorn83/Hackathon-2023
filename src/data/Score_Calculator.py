@@ -82,7 +82,6 @@ def calc_scores(nut_facts):
     nut_list = []
     nut_name = []
     nutrient_data = data_organize(nut_facts)
-    print(nutrient_data)
     for nutrient in nutrient_data:
         nutrient_name = nutrient.get('Name')
         nut_name.append(nutrient.get('Name'))

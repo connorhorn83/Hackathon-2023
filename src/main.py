@@ -9,9 +9,10 @@ url = None
 
 page = """
 
-# Nutri*py*
-Upload an image of your 'Nutrition Facts' or enter an ingredient into the search bar to get nutritional information, a summary, and advisories about daily intakes about the food.
-
+<h1 align="center">Nutri*py*</h1>
+<h5 align="center">Upload an image of your food or drinks barcode or enter an ingredient into
+the search bar to get nutritional information, a summary, and advisories about daily intakes
+about the food or drink.</h5>
 <|{url}|file_selector|label=Upload Image|extensions=".raw,.jpeg,.png,.jpg,.raw"|>
 <|{queryInput}|input|label=Search...|>
 
